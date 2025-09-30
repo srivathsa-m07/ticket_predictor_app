@@ -1,0 +1,1 @@
+{"features_order": ["issue_type", "issue_priority", "issue_proj", "issue_contr_count", "issue_comments_count", "processing_steps", "day_of_week", "month", "hour_of_day"], "target_log_transform": true}

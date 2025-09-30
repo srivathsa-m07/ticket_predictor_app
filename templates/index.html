@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IT Ticket Resolution Predictor</title>
+  <style>
+    body { background:#0d1117; color:white; font-family:Arial; display:flex; justify-content:center; }
+    .card { background:#161b22; padding:20px; margin-top:50px; border-radius:12px; width:500px; box-shadow:0 0 15px rgba(0,0,0,0.5); }
+    input, select { width:100%; margin:5px 0; padding:8px; border-radius:6px; border:none; }
+    button { background:#238636; color:white; padding:10px; border:none; border-radius:6px; cursor:pointer; width:100%; margin-top:10px; }
+    button:hover { background:#2ea043; }
+    h2 { text-align:center; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>IT Ticket Resolution Predictor</h2>
+    <input type="text" id="issue_type" placeholder="Issue Type (e.g., Bug, Task)">
+    <input type="text" id="priority" placeholder="Priority (e.g., High, Medium)">
+    <input type="text" id="project" placeholder="Project Name">
+    <input type="number" id="contributors" placeholder="Contributors Count">
+    <input type="number" id="comments" placeholder="Comments Count">
+    <input type="number" id="steps" placeholder="Processing Steps">
+    <input type="number" id="day" placeholder="Day of Week (0=Mon..6=Sun)">
+    <input type="number" id="month" placeholder="Month (1-12)">
+    <input type="number" id="hour" placeholder="Hour of Day (0-23)">
+    <button onclick="predict()">Predict Resolution Time</button>
+    <p id="output" style="margin-top:20px; font-weight:bold;"></p>
+  </div>
+
+  <script>
+    async function predict() {
+      const data = {
+        issue_type: document.getElementById("issue_type").value,
+        priority: document.getElementById("priority").value,
+        project: document.getElementById("project").value,
+        contributors: document.getElementById("contributors").value,
+        comments: document.getElementById("comments").value,
+        steps: document.getElementById("steps").value,
+        day: document.getElementById("day").value,
+        month: document.getElementById("month").value,
+        hour: document.getElementById("hour").value
+      };
+
+      const res = await fetch("/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const result = await res.json();
+      document.getElementById("output").innerText =
+        `Predicted Resolution: ${result.predicted_hours} hours (~ ${result.formatted})`;
+    }
+  </script>
+</body>
+</html>

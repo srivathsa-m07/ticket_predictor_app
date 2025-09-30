@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body style="background:#0d1117;color:white;">
+  <h2>Dashboard Reporting</h2>
+  <div id="plot1"></div>
+  <div id="plot2"></div>
+  <script>
+    var g1 = {{ graph1 | safe }};
+    var g2 = {{ graph2 | safe }};
+    Plotly.newPlot('plot1', g1.data, g1.layout);
+    Plotly.newPlot('plot2', g2.data, g2.layout);
+  </script>
+  <a href="/">⬅ Back to Predictor</a>
+</body>
+</html>
