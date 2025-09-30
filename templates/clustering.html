@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8" />
   <title>Ticket Clustering</title>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
-<body style="background:#0d1117;color:white;">
+<body style="background:#0d1117;color:white;font-family:Arial;padding:20px;">
   <h2>Ticket Clustering Results</h2>
-  <div id="cluster_plot"></div>
-  <script>
-    var graphs = {{ graphJSON | safe }};
-    Plotly.newPlot('cluster_plot', graphs.data, graphs.layout);
-  </script>
-  <a href="/">⬅ Back to Predictor</a>
+
+  <!-- graphHTML contains full Plotly HTML fragment(s) -->
+  <div>
+    {{ graphHTML | safe }}
+  </div>
+
+  <p><a href="/" style="color:#9fd1ff;">⬅ Back to Predictor</a></p>
 </body>
 </html>

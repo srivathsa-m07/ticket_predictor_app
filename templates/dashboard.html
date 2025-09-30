@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dashboard</title>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <meta charset="utf-8" />
+  <title>Ticket Dashboard</title>
 </head>
-<body style="background:#0d1117;color:white;">
-  <h2>Dashboard Reporting</h2>
-  <div id="plot1"></div>
-  <div id="plot2"></div>
-  <script>
-    var g1 = {{ graph1 | safe }};
-    var g2 = {{ graph2 | safe }};
-    Plotly.newPlot('plot1', g1.data, g1.layout);
-    Plotly.newPlot('plot2', g2.data, g2.layout);
-  </script>
-  <a href="/">⬅ Back to Predictor</a>
+<body style="background:#0d1117;color:white;font-family:Arial;padding:20px;">
+  <h2>📊 Ticket Clustering & Resolution Dashboard</h2>
+
+  <!-- 'graph' contains concatenated Plotly HTML fragments -->
+  <div>
+    {{ graph|safe }}
+  </div>
+
+  <p><a href="/" style="color:#9fd1ff;">🏠 Back to Predictor</a></p>
 </body>
 </html>
